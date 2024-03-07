@@ -9,20 +9,33 @@
 
 int main(){
 	
-	float *pu; // deklarasi var pointer bertipe float
-	float nu; // deklarasi var bertipe float
+//	float *pu; // deklarasi var pointer bertipe float
+//	float nu; // deklarasi var bertipe float
+//	
+////	int u = 1234;
+//	float u = 1234; // inisialisasi var u bertipe integer dengan nilai 1234
+//				  // harusnya, agar program berjalan baik, tipe data 'u' adalah float
+//	
+//	pu = &u; // menyimpan alamat var 'u' di var 'pu'
+//	nu = *pu; // menyimpan nilai yang ditunjuk oleh var 'pu' di var 'nu'
+//	
+//	printf("u = %f\n", u); //mencetak nilai u
+//	printf("nu = %f\n", nu); // mencetak nilai nu;
+//	
+//	return 0;
 	
-//	int u = 1234;
-	float u = 1234; // inisialisasi var u bertipe integer dengan nilai 1234
-				  // harusnya, agar program berjalan baik, tipe data 'u' adalah float
+	char a; 
+	char *pa;
 	
-	pu = &u; // menyimpan alamat var 'u' di var 'pu'
-	nu = *pu; // menyimpan nilai yang ditunjuk oleh var 'pu' di var 'nu'
+	printf("ukuran tipe data char = %d\n", sizeof(char));
+	printf("alamat var a = %d\n", &a);
+	pa = &a;
 	
-	printf("u = %f\n", u); //mencetak nilai u
-	printf("nu = %f\n", nu); // mencetak nilai nu;
+	printf("sebelum ditambah = %d\n", pa);
+	pa = pa + 'A';
 	
-	return 0;
+	printf("sesudah di tambah= %d", pa);    
+
 }
 
  
