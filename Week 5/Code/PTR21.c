@@ -1,9 +1,9 @@
 /*----------------------------------------------------------------------------*/
-/* File			    : PTR21.cpp
-/* Deskripsi	    : contoh deklarasi list dan penggunaan single linked list
-/* Dibuat oleh 	    : Tim Dosen SDP
-/* Dimodifikasi oleh: Reqi Jumantara Hapid (231524023)
-/* Tanggal 		    : 13-03-2024
+/* File			: PTR21.cpp
+/* Deskripsi	: contoh deklarasi list dan penggunaan single linked list
+/* Dibuat oleh 	: Tim Dosen SDP
+/* Dimodifikasi oleh : Reqi Jumantara Hapid
+/* Tanggal 		: 13-03-2024
 */
 
 /*----------------------------------------------------------------------------*/
@@ -35,8 +35,9 @@ ElmtList1 *address1;
 
 /* Method yang digunakan */
 ElmtList *createNode(int value);
-ElmtList *searchPos(ElmtList *L, int value);
+address searchPos(address L, int value);
 void insertBetween(address list, int value, int key);
+void displayLinkedList(address L);
 
 /* Program Utama */
 int main()
@@ -76,24 +77,17 @@ int main()
         current = next(current);
     }
     next(current) = Q;
+    /*End alokasi, insert as last elemen */
 
-    /*Insert di antara dua node*/
     insertBetween(First, 35, 30);
 
-    /* Menampilkan info dalam seluruh node */
-    current = First;
-    while (current != Nil)
-    {
-        printf("%d -> ", info(current));
-        current = next(current);
-    }
+    displayLinkedList(First);
 
     return 0;
 }
 
-
 // Membuat Node Baru
-ElmtList *createNode(int value)
+ElmtList* createNode(int value)
 /*  IS : Node belum terdefinisi
     FS : Node terbentuk dan 'data' sudah terisi oleh 'value'
          Alokasi memori berhasil jika newNode tidak NULL
@@ -114,9 +108,9 @@ ElmtList *createNode(int value)
 
 // Mencari posisi dari suatu nilai
 /* Mengembalikan alamat 'list' yang memiliki nilai 'data' yang dicari*/
-ElmtList *searchPos(ElmtList *L, int value)
+address searchPos(address L, int value)
 {
-    ElmtList *current = L;
+    address current = L;
     bool temu = 0;
     while ((!temu) && (current != NULL))
     {
@@ -159,3 +153,21 @@ void insertBetween(address list, int value, int key)
     next(position) = newNode;
 }
 
+// Menampilkan Isi Linked List
+void displayLinkedList(address L) 
+	/*	IS : Layar kosong
+		FS : Layar menampilkan isi 'data' dari setiap node pada linked list tersebut
+	*/
+{
+    address current = L;
+    if (current == NULL) {
+        printf("Linked List kosong.\n");
+        return;
+    }
+    printf("Isi Linked List: ");
+    while (current != NULL) {
+        printf("%d -> ", current->info);
+        current = current->next;
+    }
+    printf("NULL\n");
+}
