@@ -1,68 +1,137 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
+#include <conio.h>
 #include <string.h>
+#include "case1.h"
+
 // #include "ADTLIST.h"
 #define info(P) (P)->info
 #define next(P) (P)->next
 #define Nil NULL
+#define MAX_KOTA 8
+kt ArrayKota[MAX_KOTA];
+int indexKota = 0;
 
-typedef char infotype[100];
-typedef struct tElmtList *address;
-typedef struct kt *address1;
-typedef struct tElmtList
-{
-    /* data */
-    infotype info;
-    address next;
-}mhs;
+kt* searchKota(infotype nama_Kota){
+    int index = 0;
+    kt* currentKota = Nil;
+    while (index < MAX_KOTA){
+        if (strcmp(ArrayKota[index].kota, nama_Kota) == 0){
+            currentKota = &ArrayKota[index];
+        }
+        index++;
+    }
 
-typedef struct kt
-{
-    /* data */
-    infotype kota;
-    address next1;
-}kt;
-
-kt A[100];
-mhs Mahasiswa[100];
-
-address createNode(infotype value);
-void insertAtBeginning(address *list, infotype value);
-void insertLast(address *head, infotype value);
-void displayList(address list);
-
-
-int main(){
-    address First;
-    // address1 First1;
-
-    // int index;
-    strcpy(A[0].kota, "Bandung");
-    strcpy(A[1].kota, "Jakarta");
-
-    //Menambahkan di dekat array
-    insertAtBeginning(&A[0].next1, "Reqi");
-    // A[0].next1 = First;
-
-    insertAtBeginning(&First, "Agus");
-    // insertAtBeginning(&First, "yakk");
-    // insertAtBeginning(&First, "sadh");
-    // insertAtBeginning(&First, "fuiii");
-    
-    insertLast(&First, "Yuhuu");
-
-    displayList(First);
-    // printf("%s", First->next->info);
-    // printf("%s", First1->info);
-
-    return 0;
-}
-
-void ins_kota(A[no_kota].next1){
-    
+    return currentKota;
 }
 
 
-address createNode (infotype nama){
-    address 
+void tambahKota(infotype namaKota){
+    if(indexKota > MAX_KOTA ){
+        printf("Mohon maaf, Array sudah penuh!\n");
+        return;
+    }
+
+    strcpy(ArrayKota[indexKota].kota, namaKota);
+    ArrayKota[indexKota].next1 = Nil;
+    ArrayKota[indexKota].isDeleted = false;
+
+    indexKota++;
+}
+
+
+void ubahKota(infotype namaKota, infotype newNamaKota)
+{
+    kt* kota = searchKota(namaKota);
+
+    if (kota == Nil){
+        printf("Nama kota tidak ditemukan!\n");
+        return;
+    }
+
+    strcpy((*kota).kota, newNamaKota);
+}
+
+bool isEmpty(){
+    if(indexKota < 0){
+        return true;
+    } else {
+        return false;
+    }
+}
+
+void tambahWarga(infotype namaKota, infotype namaWarga){
+    kt* kota = searchKota(namaKota);
+    
+    if (kota == Nil){
+        printf("Nama kota tidak ditemukan!\n");
+        return;
+    }
+
+    address newMhs = (address) malloc (sizeof(mhs));
+    if(newMhs == Nil){
+        printf("Alokasi memori gagal!");
+        exit(1);
+    } else {
+        strcpy(newMhs->info, namaWarga);
+        newMhs->next = Nil;
+    }
+
+    if ((*kota).next1 == Nil){
+        (*kota).next1 = newMhs;
+    } else {
+        address lastMhs = (*kota).next1;
+        while (lastMhs->next != Nil){
+            lastMhs = lastMhs->next;
+        }
+        lastMhs->next = newMhs;
+    }
+}
+
+
+void displayMhs(kt kota){
+    printf("\n___DAFTAR WARGA____\n");
+    if (kota.next1 != Nil){
+        address current = kota.next1;
+        while (current != Nil){
+            printf("\tNama\t: %s\n", current->info);
+            current = current->next;
+        }
+    }
+}
+
+void displayKota(){
+    printf("______DAFTAR KOTA______\n");
+    for (int index = 0; index < indexKota; index++){
+        if (!ArrayKota[index].isDeleted){
+            printf("\n\n%d. %s", index+1, ArrayKota[index].kota);
+            displayMhs(ArrayKota[index]);
+        }
+    }
+    getch();
+}
+
+void deallocAllMhs(address first){
+    if(first->next != Nil){
+        deallocAllMhs(first->next);
+    }
+
+    free(first);
+}
+
+
+void deleteKota(infotype namaKota){
+    kt* kota = searchKota(namaKota);
+    if(kota == Nil || kota->isDeleted){
+        printf("Kota tidak ditemukan!\n");
+        sleep(3);
+        return;
+    }
+
+    if(kota->next1 != Nil){
+        deallocAllMhs(kota->next1);
+    }
+    kota->next1 = Nil;
+    kota->isDeleted = true;
 }
