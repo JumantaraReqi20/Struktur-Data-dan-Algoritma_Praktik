@@ -90,25 +90,33 @@ void tambahWarga(kt* first, infotype namaKota, infotype namaWarga) {
 }
 
 void displayMhs(kt* kota) {
-    printf("DAFTAR WARGA\n");
-    if (kota->next1 != Nil) {
-        address current = kota->next1;
-        while (current != Nil) {
-            printf("\tNama\t: %s\n", current->info);
-            current = current->next;
+    if (kota != Nil){
+        printf("DAFTAR WARGA\n\n");
+        if (kota->next1 != Nil) {
+            address current = kota->next1;
+            while (current != Nil) {
+                printf("\tNama\t: %s\n", current->info);
+                current = current->next;
+            }
         }
+    } else {
+        printf("");
     }
 }
 
 void displayKota(kt* first) {
-    printf("\n\n________DAFTAR KOTA________\n");
-    kt* bantu = first;
-    int counter = 1;
-    while (bantu != Nil) {
-        printf("\n%d. %s\n", counter, bantu->kota);
-        displayMhs(bantu);
-        bantu = bantu->next2;
-        counter++;
+    if (first != Nil){
+        printf("\n\n________DAFTAR KOTA________\n");
+        kt* bantu = first;
+        int counter = 1;
+        while (bantu != Nil) {
+            printf("\n%d. %s\n", counter, bantu->kota);
+            displayMhs(bantu);
+            bantu = bantu->next2;
+            counter++;
+        }
+    } else {
+        printf("\nData Masih Kosong!\n\n");
     }
 }
 

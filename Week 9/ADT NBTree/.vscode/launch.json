@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/POLITEKNIK NEGERI BANDUNG/SEMESTER 2/SDA/Praktik/Source Code/ETS 2024",
-      "program": "c:/POLITEKNIK NEGERI BANDUNG/SEMESTER 2/SDA/Praktik/Source Code/ETS 2024/build/Debug/outDebug",
+      "cwd": "c:/POLITEKNIK NEGERI BANDUNG/SEMESTER 2/SDA/Praktik/Pertemuan 9/ADT NBTree",
+      "program": "c:/POLITEKNIK NEGERI BANDUNG/SEMESTER 2/SDA/Praktik/Pertemuan 9/ADT NBTree/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

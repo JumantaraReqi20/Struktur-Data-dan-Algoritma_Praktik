@@ -14,7 +14,8 @@ int main(){
 	
 	for(;;){
 		system("cls");
-        printf("______ \033[92mSelamat datang di Sistem Terpadu Data Warga Kota\033[0;0m ______\n\n");
+		displayKota(first);
+		printf("______ \033[92mSelamat datang di Sistem Terpadu Data Warga Kota\033[0;0m ______\n\n");
 		printf("\033[34m[\033[0m1\033[34m]\033[0m Tambah Kota");
 		printf("\n\033[34m[\033[0m2\033[34m]\033[0m Tambah Warga "); 
 		printf("\n\033[34m[\033[0m3\033[34m]\033[0m Ubah Nama Kota ");
